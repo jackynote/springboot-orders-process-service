@@ -1,0 +1,2483 @@
+{
+	"info": {
+		"_postman_id": "e2e0d34b-693e-4b27-9c70-37e660ac056b",
+		"name": "CafeShop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21884097"
+	},
+	"item": [
+		{
+			"name": "Admin",
+			"item": [
+				{
+					"name": "1. Create Admin + Merchant",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123456a@\",\n    \"merchant\": \"The Coffee House\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/admin",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "1. Create Admin + Merchant",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123456a@\",\n    \"merchant\": \"The coffee house\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/admin",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"admin"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Sep 2024 02:00:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "2. Admin Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"// Extract the token from the response",
+									"var token = response.token;",
+									"// Set the token as an environment variable",
+									"pm.environment.set(\"authToken\", \"Bearer \" + token);",
+									"",
+									"// Log the token to the Postman console for debugging (optional)",
+									"console.log(\"Token set to environment variable 'authToken':\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123456a@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/auth/login",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "2. Admin Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"operator\",\n    \"password\": \"123456a@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Sep 2024 02:36:44 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvcGVyYXRvciIsImlhdCI6MTcyNTI0NDYwNCwiZXhwIjoxNzI1MjQ4MjA0fQ.PRhOxeIaTjUar3Bxap0H6SRZRGtv3qXW3Qbsp1_fh_dR4TGLT-cP-pILrBl2vn9rSPwYHh34irGSsJC5RQcBRA\"\n}"
+						}
+					]
+				},
+				{
+					"name": "3. Create franchise",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"// Extract the token from the response",
+									"var franchiseId = response.id;",
+									"// Set the token as an environment variable",
+									"pm.environment.set(\"franchiseId\", franchiseId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"location\": \"123 Coffee Lane, Downtown\",\n  \"name\": \"Central Coffee Shop\",\n  \"contactDetails\": \"contact@centralcoffee.com, +1234567890\",\n  \"openingTime\": \"07:00:00\",\n  \"closingTime\": \"19:00:00\",\n  \"numberOfQueues\": 2,\n  \"maxQueueSize\": 10,\n  \"latitude\": 21,\n  \"longitude\": 105\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/franchises",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franchises"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "3. Create franchise",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNTI0MTMyMCwiZXhwIjoxNzI1MjQ0OTIwfQ.K_I0pM7njQtZqJTXahlCNIbKfCStNoyagWqMItMA3VIFmD-o4ikJIB6LgL33OsTCyg8dQtyxjhjYFSgEJVRKZw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"location\": \"123 Coffee Lane, Downtown\",\n  \"name\": \"Central Coffee Shop\",\n  \"contactDetails\": \"contact@centralcoffee.com, +1234567890\",\n  \"openingTime\": \"07:00:00\",\n  \"closingTime\": \"19:00:00\",\n  \"numberOfQueues\": 2,\n  \"maxQueueSize\": 10\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/franchises",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"franchises"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Sep 2024 02:10:51 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"createdAt\": \"2024-09-02T09:10:51.828806\",\n    \"updatedAt\": \"2024-09-02T09:10:51.829014\",\n    \"version\": 0,\n    \"id\": \"bf291c1d-2417-4cf5-b6b0-f1ba04cb3321\",\n    \"location\": \"123 Coffee Lane, Downtown\",\n    \"name\": \"Central Coffee Shop\",\n    \"contactDetails\": \"contact@centralcoffee.com, +1234567890\",\n    \"openingTime\": \"07:00:00\",\n    \"closingTime\": \"19:00:00\",\n    \"numberOfQueues\": 2,\n    \"maxQueueSize\": 10,\n    \"merchant\": {\n        \"createdAt\": \"2024-09-02T08:09:41.900285\",\n        \"updatedAt\": \"2024-09-02T08:09:41.900676\",\n        \"version\": 0,\n        \"id\": \"7fc48343-d91f-4e6e-b5d4-5fcc213ace1e\",\n        \"name\": \"The coffee house\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "4. Get franchise details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/franchises/{{franchiseId}}",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franchises",
+								"{{franchiseId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4. Get franchise",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/franchises/d719fa7d-4e68-4f5d-bde2-9fc4f3457dd7",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"franchises",
+										"d719fa7d-4e68-4f5d-bde2-9fc4f3457dd7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Sep 2024 16:32:34 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"createdAt\": \"2024-09-07T23:31:49.239624\",\n    \"updatedAt\": \"2024-09-07T23:31:49.239672\",\n    \"version\": 0,\n    \"id\": \"d719fa7d-4e68-4f5d-bde2-9fc4f3457dd7\",\n    \"location\": \"123 Coffee Lane, Downtown\",\n    \"name\": \"Central Coffee Shop\",\n    \"contactDetails\": \"contact@centralcoffee.com, +1234567890\",\n    \"openingTime\": \"07:00:00\",\n    \"closingTime\": \"19:00:00\",\n    \"numberOfQueues\": 2,\n    \"maxQueueSize\": 10,\n    \"merchant\": {\n        \"createdAt\": \"2024-09-07T23:29:24.752536\",\n        \"updatedAt\": \"2024-09-07T23:29:24.752613\",\n        \"version\": 0,\n        \"id\": \"14e23826-ddbb-4772-a604-3f0bf23a5fab\",\n        \"name\": \"The Coffee House\"\n    },\n    \"latitude\": 21,\n    \"longitude\": 105,\n    \"queues\": []\n}"
+						}
+					]
+				},
+				{
+					"name": "5. Create batch menu for franchise",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n  {\n    \"name\": \"Latte\",\n    \"price\": 4.50,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Cappuccino\",\n    \"price\": 5.00,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Espresso\",\n    \"price\": 3.00,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Americano\",\n    \"price\": 3.50,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Mocha\",\n    \"price\": 5.50,\n    \"currency\": \"USD\",\n    \"isAvailable\": false\n  }\n]\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/franchises/{{franchiseId}}/menu",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franchises",
+								"{{franchiseId}}",
+								"menu"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "5. Create batch menu for franchise",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTcyNTI0MTMyMCwiZXhwIjoxNzI1MjQ0OTIwfQ.K_I0pM7njQtZqJTXahlCNIbKfCStNoyagWqMItMA3VIFmD-o4ikJIB6LgL33OsTCyg8dQtyxjhjYFSgEJVRKZw",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "[\n  {\n    \"name\": \"Latte\",\n    \"price\": 4.50,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Cappuccino\",\n    \"price\": 5.00,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Espresso\",\n    \"price\": 3.00,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Americano\",\n    \"price\": 3.50,\n    \"currency\": \"USD\",\n    \"isAvailable\": true\n  },\n  {\n    \"name\": \"Mocha\",\n    \"price\": 5.50,\n    \"currency\": \"USD\",\n    \"isAvailable\": false\n  }\n]\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/franchise/bf291c1d-2417-4cf5-b6b0-f1ba04cb3321/menu",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"franchise",
+										"bf291c1d-2417-4cf5-b6b0-f1ba04cb3321",
+										"menu"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Sep 2024 02:27:46 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"name\": \"Latte\",\n        \"price\": 4.5,\n        \"currency\": \"USD\",\n        \"available\": false\n    },\n    {\n        \"name\": \"Cappuccino\",\n        \"price\": 5,\n        \"currency\": \"USD\",\n        \"available\": false\n    },\n    {\n        \"name\": \"Espresso\",\n        \"price\": 3,\n        \"currency\": \"USD\",\n        \"available\": false\n    },\n    {\n        \"name\": \"Americano\",\n        \"price\": 3.5,\n        \"currency\": \"USD\",\n        \"available\": false\n    },\n    {\n        \"name\": \"Mocha\",\n        \"price\": 5.5,\n        \"currency\": \"USD\",\n        \"available\": false\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "6. Create operator users",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"operator\",\n    \"password\": \"123456a@\",\n    \"role\": \"OPERATOR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/users",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"users"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "6. Create operator users",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"operator\",\n    \"password\": \"123456a@\",\n    \"role\": \"OPERATOR\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Sep 2024 16:35:43 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"createdAt\": \"2024-09-07T23:35:43.088553\",\n    \"updatedAt\": \"2024-09-07T23:35:43.088569\",\n    \"version\": 0,\n    \"id\": \"d3829af0-a22a-41bb-9c16-84b5c650979d\",\n    \"username\": \"operator\",\n    \"password\": \"$2a$10$hxGfPyqPJ1sI4SlUN1K2GeK2iAfDsZ9CCoAw3EB6kMYEGXyrZwgRi\",\n    \"firstName\": null,\n    \"lastName\": null,\n    \"email\": null,\n    \"phone\": null,\n    \"role\": \"OPERATOR\",\n    \"mobileNumber\": null,\n    \"address\": null,\n    \"merchant\": {\n        \"createdAt\": \"2024-09-07T23:29:24.752536\",\n        \"updatedAt\": \"2024-09-07T23:29:24.752613\",\n        \"version\": 0,\n        \"id\": \"14e23826-ddbb-4772-a604-3f0bf23a5fab\",\n        \"name\": \"The Coffee House\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Operator",
+			"item": [
+				{
+					"name": "1. Login as an operator",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"// Extract the token from the response",
+									"var token = response.token;",
+									"// Set the token as an environment variable",
+									"pm.environment.set(\"authToken\", \"Bearer \" + token);",
+									"",
+									"// Log the token to the Postman console for debugging (optional)",
+									"console.log(\"Token set to environment variable 'authToken':\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"operator\",\n    \"password\": \"123456a@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/auth/login",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "1. Login as an operator",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"operator\",\n    \"password\": \"123456a@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Sep 2024 16:38:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJvcGVyYXRvciIsImlhdCI6MTcyNTcyNzExNywiZXhwIjoxNzI1NzMwNzE3fQ.6rECIz9lRguQVpiomWCu5J92NarI7D1pXcmvLNIzE8MHBmegOPgYqkf23VZpofesYsuMCSJ88tS91qFTBrlHYQ\"\n}"
+						}
+					]
+				},
+				{
+					"name": "2. Get queue status",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/queues/57c552c4-92f6-48d6-a496-fdf6075c5c67/status",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"queues",
+								"57c552c4-92f6-48d6-a496-fdf6075c5c67",
+								"status"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "2. Get queue status",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/queues/57c552c4-92f6-48d6-a496-fdf6075c5c67/status",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"queues",
+										"57c552c4-92f6-48d6-a496-fdf6075c5c67",
+										"status"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 06:46:11 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"queueId\": \"57c552c4-92f6-48d6-a496-fdf6075c5c67\",\n    \"queueNumber\": 2,\n    \"numberOfWaitingCustomers\": 2\n}"
+						}
+					]
+				},
+				{
+					"name": "3. Get queue list by franchise",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/queues?franchiseId={{franchiseId}}",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"queues"
+							],
+							"query": [
+								{
+									"key": "franchiseId",
+									"value": "{{franchiseId}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "3. Get queue list by franchise",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/queues?franchiseId={{franchiseId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"queues"
+									],
+									"query": [
+										{
+											"key": "franchiseId",
+											"value": "{{franchiseId}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 06:27:40 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"57c552c4-92f6-48d6-a496-fdf6075c5c67\",\n        \"queueNumber\": 2\n    },\n    {\n        \"id\": \"89367145-2bc6-4288-83d4-957a25636fc7\",\n        \"queueNumber\": 1\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "4. Get orders in queue",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/queues/57c552c4-92f6-48d6-a496-fdf6075c5c67/orders",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"queues",
+								"57c552c4-92f6-48d6-a496-fdf6075c5c67",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4. Get orders in queue",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/queues/57c552c4-92f6-48d6-a496-fdf6075c5c67/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"queues",
+										"57c552c4-92f6-48d6-a496-fdf6075c5c67",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 07:09:33 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"orderId\": \"4ce7825a-a3bd-46ad-93e8-cf1dc68f66c9\",\n        \"queuePosition\": 1,\n        \"expectedWaitingTime\": 0,\n        \"orderNumber\": \"O-ONIRSM31ZNVP\",\n        \"customerName\": \"Jacky\",\n        \"customerPhone\": \"0123444888\",\n        \"orderItemList\": [\n            {\n                \"name\": \"Latte\",\n                \"quantity\": 1\n            }\n        ]\n    },\n    {\n        \"orderId\": \"4a7313a9-af83-4068-a41d-607d48d0a59f\",\n        \"queuePosition\": 2,\n        \"expectedWaitingTime\": 0,\n        \"orderNumber\": \"O-0BMHXPGXJJRY\",\n        \"customerName\": \"Jackyie 2\",\n        \"customerPhone\": \"0123444889\",\n        \"orderItemList\": [\n            {\n                \"name\": \"Latte\",\n                \"quantity\": 1\n            }\n        ]\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "5. Service customer in queue",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"customerQueueId\": \"4ce7825a-a3bd-46ad-93e8-cf1dc68f66c9\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/queues/57c552c4-92f6-48d6-a496-fdf6075c5c67/service",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"queues",
+								"57c552c4-92f6-48d6-a496-fdf6075c5c67",
+								"service"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "5. Service customer in queue",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"customerQueueId\": \"4ce7825a-a3bd-46ad-93e8-cf1dc68f66c9\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/queues/57c552c4-92f6-48d6-a496-fdf6075c5c67/service",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"queues",
+										"57c552c4-92f6-48d6-a496-fdf6075c5c67",
+										"service"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/plain;charset=UTF-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "54"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 07:14:02 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "Customer has been serviced and removed from the queue."
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Customer",
+			"item": [
+				{
+					"name": "1. Customer register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"mobile_number\": \"0123444889\",\n    \"first_name\": \"Jackyie 2\",\n    \"address\": \"Hanoi, Vietnam\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/customers/register",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "7. Customer register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"mobile_number\": \"012345678\",\n    \"first_name\": \"Jacky\",\n    \"address\": \"Hanoi, Vietnam\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/customer/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customer",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 02 Sep 2024 03:56:12 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"createdAt\": \"2024-09-02T10:56:12.548513\",\n    \"updatedAt\": \"2024-09-02T10:56:12.548549\",\n    \"version\": 0,\n    \"id\": \"9af5805f-3dcb-477d-88ef-066cec55554d\",\n    \"username\": \"012345678\",\n    \"password\": \"$2a$10$VB8WpnYNBkUfFWKo41PP3usr/MuW60WCeyjSfqN6ekocGGc44.unW\",\n    \"firstName\": \"Jacky\",\n    \"lastName\": null,\n    \"email\": null,\n    \"phone\": null,\n    \"role\": \"CUSTOMER\",\n    \"mobileNumber\": \"012345678\",\n    \"address\": \"Hanoi, Vietnam\",\n    \"merchant\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "2. Customer login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"// Extract the token from the response",
+									"var token = response.token;",
+									"// Set the token as an environment variable",
+									"pm.environment.set(\"authToken\", \"Bearer \" + token);",
+									"",
+									"// Log the token to the Postman console for debugging (optional)",
+									"console.log(\"Token set to environment variable 'authToken':\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"0123444889\",\n    \"password\": \"123456a@\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/auth/login",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "8. Get customers token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"0123444888\",\n    \"password\": \"123456a@\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Sep 2024 16:27:01 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiIwMTIzNDQ0ODg4IiwiaWF0IjoxNzI1NzI2NDIxLCJleHAiOjE3MjU3MzAwMjF9.cNmiaB7oHq-CH4SBdqPbrJ0k-UMriC9e4Is1WX7RUlqN46m_YflwntFX7wPrGe0f9DnOs3WI_1VdU7ULLZlgfw\"\n}"
+						}
+					]
+				},
+				{
+					"name": "3. Get menu items",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/franchises/{{franchiseId}}/menu",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franchises",
+								"{{franchiseId}}",
+								"menu"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "3. Get menu items",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/franchises/{{franchiseId}}/menu",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"franchises",
+										"{{franchiseId}}",
+										"menu"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 07 Sep 2024 16:49:23 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"aa6e35d9-9282-42ff-ba7a-2ca9b8b7c5bb\",\n        \"name\": \"Latte\",\n        \"price\": 4.5,\n        \"currency\": \"USD\",\n        \"is_available\": false\n    },\n    {\n        \"id\": \"b185b5b6-202b-4bab-a1c1-6d86377bdbe1\",\n        \"name\": \"Cappuccino\",\n        \"price\": 5,\n        \"currency\": \"USD\",\n        \"is_available\": false\n    },\n    {\n        \"id\": \"cd63ab60-d049-4102-bf4f-6048d3f0d5dc\",\n        \"name\": \"Espresso\",\n        \"price\": 3,\n        \"currency\": \"USD\",\n        \"is_available\": false\n    },\n    {\n        \"id\": \"d6585401-3895-48dd-8154-8f6ac2a685d1\",\n        \"name\": \"Americano\",\n        \"price\": 3.5,\n        \"currency\": \"USD\",\n        \"is_available\": false\n    },\n    {\n        \"id\": \"7686806c-1af2-455e-82f9-db8f778782d9\",\n        \"name\": \"Mocha\",\n        \"price\": 5.5,\n        \"currency\": \"USD\",\n        \"is_available\": false\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "4. Create new order",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var response = pm.response.json();",
+									"// Extract the token from the response",
+									"var orderId = response.orderId;",
+									"// Set the token as an environment variable",
+									"pm.environment.set(\"orderId\",  orderId);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"franchiseId\": \"{{franchiseId}}\",\n    \"items\": [\n        {\n            \"menuItemId\": \"6e834276-26fd-404b-bd16-1d7f89b5318a\",\n            \"quantity\": 1\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_api}}/api/v1/orders",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "4. Create new order",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"franchiseId\": \"{{franchiseId}}\",\n    \"items\": [\n        {\n            \"menuItemId\": \"aa6e35d9-9282-42ff-ba7a-2ca9b8b7c5bb\",\n            \"quantity\": 1\n        }\n    ]\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/v1/orders",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 06:09:05 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": \"bea6f585-e9ea-40be-a280-2cd6250c4ef1\",\n    \"queuePosition\": 1,\n    \"expectedWaitingTime\": 15\n}"
+						}
+					]
+				},
+				{
+					"name": "5. Get position in queue",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/orders/{{orderId}}/position",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"{{orderId}}",
+								"position"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "5. Get position in queue",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/orders/{{orderId}}/position",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"{{orderId}}",
+										"position"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 06:09:18 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"queuePosition\": 2,\n    \"expectedWaitingTime\": 15\n}"
+						}
+					]
+				},
+				{
+					"name": "6. Get order list by pagination",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/orders?page=1&limit=10&status=PROCESS&sort=createdAt:asc",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "status",
+									"value": "PROCESS"
+								},
+								{
+									"key": "sort",
+									"value": "createdAt:asc"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "6. Get order list by pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/orders?page=1&limit=10",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 07:37:00 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"orderId\": \"c20dc4b6-463b-42cb-8ba2-b26d111ded74\",\n            \"orderNumber\": \"O-33c76234-24ac-46d9-83cb-8b8a8cd678e1\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"6003401d-661e-43b2-8f20-3b5bf39331e7\",\n            \"orderNumber\": \"O-0LTVHXFMELY0\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"08eeeb8a-332b-4f36-ba85-30690415202e\",\n            \"orderNumber\": \"O-6R9MUFMX9YVR\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"f1eafc9c-a372-4a73-afc6-af86158ecfd6\",\n            \"orderNumber\": \"O-9VGPNDIT8XJE\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"284b8b2b-354f-4541-83c7-5a873db25260\",\n            \"orderNumber\": \"O-CBYJVECVMLVN\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"145a4877-1a48-46f5-b7e0-ac4f16df6742\",\n            \"orderNumber\": \"O-YHI64OJJQIQK\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"08d04265-329e-414a-b2a1-ed22f2f5b6b1\",\n            \"orderNumber\": \"O-WCAF6HDH4PEG\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"0bdae53d-7e4f-4db0-9126-d9d13269ffcd\",\n            \"orderNumber\": \"O-1WTY1SACG8HK\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"77777651-2900-4e39-97d8-9e8e1ea22e7f\",\n            \"orderNumber\": \"O-XPELK8G2GCCR\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        },\n        {\n            \"orderId\": \"3364f2aa-a655-42df-a51c-e3d76711c618\",\n            \"orderNumber\": \"O-A5FAK570G4CC\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\"\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": true,\n            \"unsorted\": true,\n            \"sorted\": false\n        },\n        \"offset\": 10,\n        \"pageNumber\": 1,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 3,\n    \"totalElements\": 21,\n    \"last\": false,\n    \"size\": 10,\n    \"number\": 1,\n    \"sort\": {\n        \"empty\": true,\n        \"unsorted\": true,\n        \"sorted\": false\n    },\n    \"numberOfElements\": 10,\n    \"first\": false,\n    \"empty\": false\n}"
+						},
+						{
+							"name": "6. Get order list by pagination",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{base_api}}/api/v1/orders?page=1&limit=10&status=PROCESS&sort=createdAt:asc",
+									"host": [
+										"{{base_api}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"orders"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "10"
+										},
+										{
+											"key": "status",
+											"value": "PROCESS"
+										},
+										{
+											"key": "sort",
+											"value": "createdAt:asc"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 15:05:37 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"content\": [\n        {\n            \"orderId\": \"7c4be160-cb20-492f-a7b6-309b7f7601b0\",\n            \"orderNumber\": \"O-RUFAGG5VPZRO\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\",\n            \"createdAt\": \"2024-09-08T22:00:16.977287\",\n            \"updatedAt\": \"2024-09-08T22:00:17.011245\"\n        },\n        {\n            \"orderId\": \"1f4ec594-335f-4785-9375-ac95434c5ff1\",\n            \"orderNumber\": \"O-IBDPJQWEA75F\",\n            \"queuePosition\": 0,\n            \"expectedWaitingTime\": 0,\n            \"orderStatus\": \"PROCESS\",\n            \"createdAt\": \"2024-09-08T22:03:27.614568\",\n            \"updatedAt\": \"2024-09-08T22:03:27.642725\"\n        }\n    ],\n    \"pageable\": {\n        \"sort\": {\n            \"empty\": false,\n            \"unsorted\": false,\n            \"sorted\": true\n        },\n        \"offset\": 0,\n        \"pageNumber\": 0,\n        \"pageSize\": 10,\n        \"paged\": true,\n        \"unpaged\": false\n    },\n    \"totalPages\": 1,\n    \"totalElements\": 2,\n    \"last\": true,\n    \"size\": 10,\n    \"number\": 0,\n    \"sort\": {\n        \"empty\": false,\n        \"unsorted\": false,\n        \"sorted\": true\n    },\n    \"numberOfElements\": 2,\n    \"first\": true,\n    \"empty\": false\n}"
+						}
+					]
+				},
+				{
+					"name": "7. Get order details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/orders/{{orderId}}",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"orders",
+								"{{orderId}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "7. Get order details",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/orders/{{orderId}}",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"orders",
+										"{{orderId}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 07:21:48 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"orderId\": \"a8576d76-3f88-45eb-a8f4-5dedddfeb50e\",\n    \"orderNumber\": \"O-0BMHXPGXJJRY\",\n    \"customerName\": \"Jackyie 2\",\n    \"customerPhone\": \"0123444889\",\n    \"customerAddress\": null,\n    \"status\": \"PROCESS\",\n    \"orderItemList\": [\n        {\n            \"name\": \"Latte\",\n            \"quantity\": 1\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "8. Get customer score",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/customers/score",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"customers",
+								"score"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "8. Get customer score",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/customers/score",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"customers",
+										"score"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 07:42:54 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"customerId\": \"583954f1-35f1-4149-8f7e-dcef6b1bff0a\",\n    \"score\": 1\n}"
+						}
+					]
+				},
+				{
+					"name": "9. Search franchise near by",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{authToken}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base_api}}/api/v1/franchises/nearby?latitude=40&longitude=-73",
+							"host": [
+								"{{base_api}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"franchises",
+								"nearby"
+							],
+							"query": [
+								{
+									"key": "latitude",
+									"value": "40"
+								},
+								{
+									"key": "longitude",
+									"value": "-73"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "9. Search franchise near by",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "{{authToken}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:8080/api/v1/franchises/nearby?latitude=40&longitude=-73",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"v1",
+										"franchises",
+										"nearby"
+									],
+									"query": [
+										{
+											"key": "latitude",
+											"value": "40"
+										},
+										{
+											"key": "longitude",
+											"value": "-73"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, no-store, max-age=0, must-revalidate"
+								},
+								{
+									"key": "Pragma",
+									"value": "no-cache"
+								},
+								{
+									"key": "Expires",
+									"value": "0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "DENY"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 08 Sep 2024 09:34:41 GMT"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=60"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": \"23780e43-19a3-4861-b3dd-4eb4d6bbdbde\",\n        \"name\": \"Queens Delights\",\n        \"location\": \"Queens, NY\",\n        \"distance\": 105.31769124396689\n    },\n    {\n        \"id\": \"d3d0c35d-eb08-4837-884e-95b2cb291e3d\",\n        \"name\": \"Brooklyn Bites\",\n        \"location\": \"Brooklyn, NY\",\n        \"distance\": 109.95461518841287\n    },\n    {\n        \"id\": \"d1a42f28-ce9c-4041-8b74-0e2521f41533\",\n        \"name\": \"Empire Eats\",\n        \"location\": \"New York City, USA\",\n        \"distance\": 116.392463546473\n    },\n    {\n        \"id\": \"d3f26f87-80a4-442e-a355-f3a322dcff91\",\n        \"name\": \"Hudson Diner\",\n        \"location\": \"Jersey City, NJ\",\n        \"distance\": 119.10696968319697\n    },\n    {\n        \"id\": \"cf94c47c-ed9b-4c31-84dd-c160852e67b3\",\n        \"name\": \"Bronx Grub\",\n        \"location\": \"The Bronx, NY\",\n        \"distance\": 119.12396184768849\n    },\n    {\n        \"id\": \"78d8e422-0827-4c9d-b116-45a6e97011b1\",\n        \"name\": \"Hoboken Eats\",\n        \"location\": \"Hoboken, NJ\",\n        \"distance\": 120.47435858558882\n    },\n    {\n        \"id\": \"4f08d334-b54c-46be-bd1d-ae6e8c331c04\",\n        \"name\": \"Stamford Savory\",\n        \"location\": \"Stamford, CT\",\n        \"distance\": 125.67407728326539\n    },\n    {\n        \"id\": \"d5621250-2d30-4290-a640-bc3409aa4f44\",\n        \"name\": \"Fort Lee Fare\",\n        \"location\": \"Fort Lee, NJ\",\n        \"distance\": 125.94009810809618\n    },\n    {\n        \"id\": \"e77b5c59-86ae-47c0-952b-624e02871aa9\",\n        \"name\": \"Yonkers Yum\",\n        \"location\": \"Yonkers, NY\",\n        \"distance\": 128.4599334980767\n    },\n    {\n        \"id\": \"f7c69980-0892-44cc-8544-2e995cd2c9e3\",\n        \"name\": \"Newark Nibbles\",\n        \"location\": \"Newark, NJ\",\n        \"distance\": 128.66952356023234\n    },\n    {\n        \"id\": \"94fcd119-8d7f-4996-8409-c3cdf1539fd0\",\n        \"name\": \"Scarsdale Snacks\",\n        \"location\": \"Scarsdale, NY\",\n        \"distance\": 130.25748783774287\n    },\n    {\n        \"id\": \"cb3c139b-744c-4b69-bbfd-62a977179128\",\n        \"name\": \"Teaneck Treats\",\n        \"location\": \"Teaneck, NJ\",\n        \"distance\": 131.09201440664532\n    },\n    {\n        \"id\": \"df657651-f5e7-4d73-ae10-8d79af90086e\",\n        \"name\": \"Rutherford Rations\",\n        \"location\": \"East Rutherford, NJ\",\n        \"distance\": 131.46973522620198\n    },\n    {\n        \"id\": \"db22b365-f11f-43c1-93d1-5209c9c854dd\",\n        \"name\": \"White Plains Plates\",\n        \"location\": \"White Plains, NY\",\n        \"distance\": 131.8241613475694\n    },\n    {\n        \"id\": \"b367a366-616d-4a2e-84ac-3c81b7b33829\",\n        \"name\": \"Hackensack Haven\",\n        \"location\": \"Hackensack, NJ\",\n        \"distance\": 132.3105262835796\n    },\n    {\n        \"id\": \"7cd91356-9cf5-44b1-8399-f7f10cc9c856\",\n        \"name\": \"Lodi Larder\",\n        \"location\": \"Lodi, NJ\",\n        \"distance\": 134.68664248576437\n    },\n    {\n        \"id\": \"36a24f61-989f-4175-8244-e2c5eedff373\",\n        \"name\": \"Paramus Platter\",\n        \"location\": \"Paramus, NJ\",\n        \"distance\": 137.02646725662936\n    },\n    {\n        \"id\": \"6aa9b176-6c46-421f-8391-adac05313e2c\",\n        \"name\": \"Clifton Cravings\",\n        \"location\": \"Clifton, NJ\",\n        \"distance\": 137.1622741436806\n    },\n    {\n        \"id\": \"4e3c8d53-345e-4517-bdcc-cce422e9c7a2\",\n        \"name\": \"Elmwood Eats\",\n        \"location\": \"Elmwood Park, NJ\",\n        \"distance\": 137.39848558650152\n    },\n    {\n        \"id\": \"33b26dec-5dfa-455f-a5d8-fa6670db4de1\",\n        \"name\": \"Ridgewood Rations\",\n        \"location\": \"Ridgewood, NJ\",\n        \"distance\": 144.1836542497823\n    }\n]"
+						}
+					]
+				}
+			]
+		}
+	]
+}

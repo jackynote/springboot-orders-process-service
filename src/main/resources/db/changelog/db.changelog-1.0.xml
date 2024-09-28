@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <!-- Changeset for creating the merchants table -->
+    <changeSet id="1" author="jacky">
+        <sqlFile path="db/sql/1.0/merchants.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the franchises table -->
+    <changeSet id="2" author="jacky">
+        <sqlFile path="db/sql/1.0/franchises.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the queues table -->
+    <changeSet id="3" author="jacky">
+        <sqlFile path="db/sql/1.0/queues.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the c_users table -->
+    <changeSet id="4" author="jacky">
+        <sqlFile path="db/sql/1.0/c_users.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the orders table -->
+    <changeSet id="5" author="jacky">
+        <sqlFile path="db/sql/1.0/orders.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the menu_items table -->
+    <changeSet id="6" author="jacky">
+        <sqlFile path="db/sql/1.0/menu_items.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the order_items table -->
+    <changeSet id="7" author="jacky">
+        <sqlFile path="db/sql/1.0/order_items.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the customer_queue table -->
+    <changeSet id="8" author="jacky">
+        <sqlFile path="db/sql/1.0/customer_queue.sql"/>
+    </changeSet>
+
+    <!-- Changeset for creating the customer_scores table -->
+    <changeSet id="9" author="jacky">
+        <sqlFile path="db/sql/1.0/customer_scores.sql"/>
+    </changeSet>
+
+
+</databaseChangeLog>

@@ -1,0 +1,18 @@
+version: "3.6"
+
+services:
+  postgres:
+    image: postgres
+    container_name: cafe-shop
+    environment:
+      POSTGRES_DB: cafe-shop
+      POSTGRES_USER: cafe-shop
+      POSTGRES_PASSWORD: Summer@2024
+    command: -c synchronous_commit=off --max-connections=200 --shared-buffers=4GB --work-mem=20MB
+    ports:
+      - 5434:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

@@ -1,0 +1,1 @@
+update franchises set version = 0;

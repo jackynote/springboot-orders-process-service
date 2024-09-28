@@ -1,0 +1,1 @@
+cd ../ && ./gradlew clean bootJar && cp build/libs/cafe_shop_microservices-1.0.jar deployment/
